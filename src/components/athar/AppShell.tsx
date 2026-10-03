@@ -105,7 +105,7 @@ export function Empty({ icon: Icon, title, desc }: { icon: typeof Compass; title
   );
 }
 
-export function Tag({ children, tone = "sky" }: { children: ReactNode; tone?: "sky" | "lavender" | "gold" }) {
+export function Tag({ children, tone = "sky" }: { children: ReactNode; tone?: "sky" | "lavender" | "gold" | undefined }) {
   const cls = tone === "gold" ? "bg-gold/25 text-gold-foreground" : tone === "lavender" ? "bg-lavender" : "bg-sky text-primary";
   return <span className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${cls}`}>{children}</span>;
 }

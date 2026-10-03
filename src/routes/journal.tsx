@@ -24,7 +24,7 @@ const PROMPTS: Record<string, string> = {
 
 function Journal() {
   const s = useAthar();
-  const [type, setType] = useState(TYPES[0]);
+  const [type, setType] = useState<string>("فكرة");
   const [text, setText] = useState("");
   const [filter, setFilter] = useState<string | null>(null);
 

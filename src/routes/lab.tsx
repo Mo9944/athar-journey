@@ -25,7 +25,7 @@ function Lab() {
   const s = useAthar();
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
-  const [tag, setTag] = useState(TAGS[0]);
+  const [tag, setTag] = useState<string>("فكرة");
   const [linking, setLinking] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);
 

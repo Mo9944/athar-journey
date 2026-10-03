@@ -1,11 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ExternalLink, ClipboardList, Sparkles as _unused, Heart, NotebookPen, UserRound, ArrowLeft, Info, CheckCircle2 } from "lucide-react";
+import { ExternalLink, ClipboardList, Heart, NotebookPen, UserRound, ArrowLeft, Info, CheckCircle2 } from "lucide-react";
 import { PageHeader, ProgressBar } from "@/components/athar/AppShell";
 import { seo } from "@/lib/seo";
 import { discoveryProgress, leadingCodes, useAthar } from "@/lib/store";
 import { RIASEC } from "@/lib/riasec";
 
-void _unused;
 export const Route = createFileRoute("/discover/")({
   head: () => seo("اكتشف ذاتك", "ابدأ رحلة اكتشاف اهتماماتك عبر اختبار O*NET، ثم سجّل نتائجك واحصل على تحليل مبسّط."),
   component: Discover,
