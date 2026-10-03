@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JournalRouteImport } from './routes/journal'
+import { Route as LabRouteImport } from './routes/lab'
+import { Route as LearnRouteImport } from './routes/learn'
+import { Route as DiscoverIndexRouteImport } from './routes/discover.index'
+import { Route as DiscoverAnalysisRouteImport } from './routes/discover.analysis'
+import { Route as DiscoverResultsRouteImport } from './routes/discover.results'
+import { Route as DiscoverSummaryRouteImport } from './routes/discover.summary'
+import { Route as DiscoverToolsRouteImport } from './routes/discover.tools'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabRoute = LabRouteImport.update({
+  id: '/lab',
+  path: '/lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverIndexRoute = DiscoverIndexRouteImport.update({
+  id: '/discover/',
+  path: '/discover/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverAnalysisRoute = DiscoverAnalysisRouteImport.update({
+  id: '/discover/analysis',
+  path: '/discover/analysis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverResultsRoute = DiscoverResultsRouteImport.update({
+  id: '/discover/results',
+  path: '/discover/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverSummaryRoute = DiscoverSummaryRouteImport.update({
+  id: '/discover/summary',
+  path: '/discover/summary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverToolsRoute = DiscoverToolsRouteImport.update({
+  id: '/discover/tools',
+  path: '/discover/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/journal': typeof JournalRoute
+  '/lab': typeof LabRoute
+  '/learn': typeof LearnRoute
+  '/discover/analysis': typeof DiscoverAnalysisRoute
+  '/discover/results': typeof DiscoverResultsRoute
+  '/discover/summary': typeof DiscoverSummaryRoute
+  '/discover/tools': typeof DiscoverToolsRoute
+  '/discover/': typeof DiscoverIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/journal': typeof JournalRoute
+  '/lab': typeof LabRoute
+  '/learn': typeof LearnRoute
+  '/discover/analysis': typeof DiscoverAnalysisRoute
+  '/discover/results': typeof DiscoverResultsRoute
+  '/discover/summary': typeof DiscoverSummaryRoute
+  '/discover/tools': typeof DiscoverToolsRoute
+  '/discover': typeof DiscoverIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/journal': typeof JournalRoute
+  '/lab': typeof LabRoute
+  '/learn': typeof LearnRoute
+  '/discover/analysis': typeof DiscoverAnalysisRoute
+  '/discover/results': typeof DiscoverResultsRoute
+  '/discover/summary': typeof DiscoverSummaryRoute
+  '/discover/tools': typeof DiscoverToolsRoute
+  '/discover/': typeof DiscoverIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/journal'
+    | '/lab'
+    | '/learn'
+    | '/discover/analysis'
+    | '/discover/results'
+    | '/discover/summary'
+    | '/discover/tools'
+    | '/discover/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/journal'
+    | '/lab'
+    | '/learn'
+    | '/discover/analysis'
+    | '/discover/results'
+    | '/discover/summary'
+    | '/discover/tools'
+    | '/discover'
+  id:
+    | '__root__'
+    | '/'
+    | '/journal'
+    | '/lab'
+    | '/learn'
+    | '/discover/analysis'
+    | '/discover/results'
+    | '/discover/summary'
+    | '/discover/tools'
+    | '/discover/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  JournalRoute: typeof JournalRoute
+  LabRoute: typeof LabRoute
+  LearnRoute: typeof LearnRoute
+  DiscoverAnalysisRoute: typeof DiscoverAnalysisRoute
+  DiscoverResultsRoute: typeof DiscoverResultsRoute
+  DiscoverSummaryRoute: typeof DiscoverSummaryRoute
+  DiscoverToolsRoute: typeof DiscoverToolsRoute
+  DiscoverIndexRoute: typeof DiscoverIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lab': {
+      id: '/lab'
+      path: '/lab'
+      fullPath: '/lab'
+      preLoaderRoute: typeof LabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover/': {
+      id: '/discover/'
+      path: '/discover'
+      fullPath: '/discover/'
+      preLoaderRoute: typeof DiscoverIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover/analysis': {
+      id: '/discover/analysis'
+      path: '/discover/analysis'
+      fullPath: '/discover/analysis'
+      preLoaderRoute: typeof DiscoverAnalysisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover/results': {
+      id: '/discover/results'
+      path: '/discover/results'
+      fullPath: '/discover/results'
+      preLoaderRoute: typeof DiscoverResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover/summary': {
+      id: '/discover/summary'
+      path: '/discover/summary'
+      fullPath: '/discover/summary'
+      preLoaderRoute: typeof DiscoverSummaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover/tools': {
+      id: '/discover/tools'
+      path: '/discover/tools'
+      fullPath: '/discover/tools'
+      preLoaderRoute: typeof DiscoverToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  JournalRoute: JournalRoute,
+  LabRoute: LabRoute,
+  LearnRoute: LearnRoute,
+  DiscoverAnalysisRoute: DiscoverAnalysisRoute,
+  DiscoverResultsRoute: DiscoverResultsRoute,
+  DiscoverSummaryRoute: DiscoverSummaryRoute,
+  DiscoverToolsRoute: DiscoverToolsRoute,
+  DiscoverIndexRoute: DiscoverIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
