@@ -10,13 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JournalRouteImport } from './routes/journal'
 import { Route as DiscoverIndexRouteImport } from './routes/discover.index'
 import { Route as DiscoverAnalysisRouteImport } from './routes/discover.analysis'
 import { Route as DiscoverResultsRouteImport } from './routes/discover.results'
+import { Route as DiscoverSummaryRouteImport } from './routes/discover.summary'
+import { Route as DiscoverToolsRouteImport } from './routes/discover.tools'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverIndexRoute = DiscoverIndexRouteImport.update({
@@ -34,39 +42,82 @@ const DiscoverResultsRoute = DiscoverResultsRouteImport.update({
   path: '/discover/results',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiscoverSummaryRoute = DiscoverSummaryRouteImport.update({
+  id: '/discover/summary',
+  path: '/discover/summary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverToolsRoute = DiscoverToolsRouteImport.update({
+  id: '/discover/tools',
+  path: '/discover/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/journal': typeof JournalRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
   '/discover/results': typeof DiscoverResultsRoute
+  '/discover/summary': typeof DiscoverSummaryRoute
+  '/discover/tools': typeof DiscoverToolsRoute
   '/discover/': typeof DiscoverIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/journal': typeof JournalRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
   '/discover/results': typeof DiscoverResultsRoute
+  '/discover/summary': typeof DiscoverSummaryRoute
+  '/discover/tools': typeof DiscoverToolsRoute
   '/discover': typeof DiscoverIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/journal': typeof JournalRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
   '/discover/results': typeof DiscoverResultsRoute
+  '/discover/summary': typeof DiscoverSummaryRoute
+  '/discover/tools': typeof DiscoverToolsRoute
   '/discover/': typeof DiscoverIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/discover/analysis' | '/discover/results' | '/discover/'
+  fullPaths:
+    | '/'
+    | '/journal'
+    | '/discover/analysis'
+    | '/discover/results'
+    | '/discover/summary'
+    | '/discover/tools'
+    | '/discover/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/discover/analysis' | '/discover/results' | '/discover'
+  to:
+    | '/'
+    | '/journal'
+    | '/discover/analysis'
+    | '/discover/results'
+    | '/discover/summary'
+    | '/discover/tools'
+    | '/discover'
   id:
-    '__root__' | '/' | '/discover/analysis' | '/discover/results' | '/discover/'
+    | '__root__'
+    | '/'
+    | '/journal'
+    | '/discover/analysis'
+    | '/discover/results'
+    | '/discover/summary'
+    | '/discover/tools'
+    | '/discover/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  JournalRoute: typeof JournalRoute
   DiscoverAnalysisRoute: typeof DiscoverAnalysisRoute
   DiscoverResultsRoute: typeof DiscoverResultsRoute
+  DiscoverSummaryRoute: typeof DiscoverSummaryRoute
+  DiscoverToolsRoute: typeof DiscoverToolsRoute
   DiscoverIndexRoute: typeof DiscoverIndexRoute
 }
 
@@ -77,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover/': {
@@ -100,13 +158,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoverResultsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/discover/summary': {
+      id: '/discover/summary'
+      path: '/discover/summary'
+      fullPath: '/discover/summary'
+      preLoaderRoute: typeof DiscoverSummaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover/tools': {
+      id: '/discover/tools'
+      path: '/discover/tools'
+      fullPath: '/discover/tools'
+      preLoaderRoute: typeof DiscoverToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  JournalRoute: JournalRoute,
   DiscoverAnalysisRoute: DiscoverAnalysisRoute,
   DiscoverResultsRoute: DiscoverResultsRoute,
+  DiscoverSummaryRoute: DiscoverSummaryRoute,
+  DiscoverToolsRoute: DiscoverToolsRoute,
   DiscoverIndexRoute: DiscoverIndexRoute,
 }
 export const routeTree = rootRouteImport
