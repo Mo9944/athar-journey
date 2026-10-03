@@ -25,7 +25,7 @@ function Results() {
     if (mode === "scores") {
       const parsed: Partial<Record<RiasecCode, number>> = {};
       for (const c of CODES) {
-        const v = scores[c].trim();
+        const v = (scores[c] ?? "").trim();
         if (v === "") continue;
         const n = Number(v);
         if (!Number.isFinite(n) || n < 0 || n > 40) { toast.error(`قيمة غير صالحة لـ ${RIASEC[c].ar}: أدخل رقمًا بين 0 و40`); return; }

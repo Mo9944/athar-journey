@@ -80,7 +80,7 @@ function Analysis() {
       {top.length > 1 && (
         <Section icon={FlaskConical} title="كيف قد تتكامل اهتماماتك؟">
           <ul className="space-y-2 text-sm">
-            {top.slice(1).map((c) => <li key={c} className="rounded-xl bg-lavender/60 p-3"><b>{RIASEC[top[0]].ar} + {RIASEC[c].ar}:</b> {pairNote(top[0], c)}</li>)}
+            {top.slice(1).map((c) => <li key={c} className="rounded-xl bg-lavender/60 p-3"><b>{RIASEC[top[0]!].ar} + {RIASEC[c].ar}:</b> {pairNote(top[0]!, c)}</li>)}
           </ul>
         </Section>
       )}
@@ -96,7 +96,7 @@ function Analysis() {
 
       <Section icon={HelpCircle} title="أسئلة للتأمل">
         <ul className="space-y-2 text-sm">
-          <li>• هل تتذكّر موقفًا شعرت فيه بالحماس أثناء نشاط {RIASEC[top[0]].short}؟ ماذا كان؟</li>
+          <li>• هل تتذكّر موقفًا شعرت فيه بالحماس أثناء نشاط {RIASEC[top[0]!].short}؟ ماذا كان؟</li>
           <li>• هل يتوافق هذا الوصف مع تجاربك الفعلية، أم أن هناك ما لا يشبهك؟</li>
           <li>• ما الاهتمام الذي تتمنى تجربته أكثر لكن لم تتح لك الفرصة؟</li>
           <li>• هل تأثّرت إجاباتك في الاختبار بتوقعات الآخرين أكثر من رغباتك؟</li>
