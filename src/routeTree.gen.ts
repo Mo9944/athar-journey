@@ -10,9 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as GrowthRouteImport } from './routes/growth'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as LabRouteImport } from './routes/lab'
 import { Route as LearnRouteImport } from './routes/learn'
+import { Route as PlanRouteImport } from './routes/plan'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as DiscoverIndexRouteImport } from './routes/discover.index'
 import { Route as DiscoverAnalysisRouteImport } from './routes/discover.analysis'
 import { Route as DiscoverResultsRouteImport } from './routes/discover.results'
@@ -22,6 +27,21 @@ import { Route as DiscoverToolsRouteImport } from './routes/discover.tools'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrowthRoute = GrowthRouteImport.update({
+  id: '/growth',
+  path: '/growth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalRoute = JournalRouteImport.update({
@@ -37,6 +57,16 @@ const LabRoute = LabRouteImport.update({
 const LearnRoute = LearnRouteImport.update({
   id: '/learn',
   path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanRoute = PlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverIndexRoute = DiscoverIndexRouteImport.update({
@@ -67,9 +97,14 @@ const DiscoverToolsRoute = DiscoverToolsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/dashboard': typeof DashboardRoute
+  '/growth': typeof GrowthRoute
   '/journal': typeof JournalRoute
   '/lab': typeof LabRoute
   '/learn': typeof LearnRoute
+  '/plan': typeof PlanRoute
+  '/privacy': typeof PrivacyRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
   '/discover/results': typeof DiscoverResultsRoute
   '/discover/summary': typeof DiscoverSummaryRoute
@@ -78,9 +113,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/dashboard': typeof DashboardRoute
+  '/growth': typeof GrowthRoute
   '/journal': typeof JournalRoute
   '/lab': typeof LabRoute
   '/learn': typeof LearnRoute
+  '/plan': typeof PlanRoute
+  '/privacy': typeof PrivacyRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
   '/discover/results': typeof DiscoverResultsRoute
   '/discover/summary': typeof DiscoverSummaryRoute
@@ -90,9 +130,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/dashboard': typeof DashboardRoute
+  '/growth': typeof GrowthRoute
   '/journal': typeof JournalRoute
   '/lab': typeof LabRoute
   '/learn': typeof LearnRoute
+  '/plan': typeof PlanRoute
+  '/privacy': typeof PrivacyRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
   '/discover/results': typeof DiscoverResultsRoute
   '/discover/summary': typeof DiscoverSummaryRoute
@@ -103,9 +148,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/assistant'
+    | '/dashboard'
+    | '/growth'
     | '/journal'
     | '/lab'
     | '/learn'
+    | '/plan'
+    | '/privacy'
     | '/discover/analysis'
     | '/discover/results'
     | '/discover/summary'
@@ -114,9 +164,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/assistant'
+    | '/dashboard'
+    | '/growth'
     | '/journal'
     | '/lab'
     | '/learn'
+    | '/plan'
+    | '/privacy'
     | '/discover/analysis'
     | '/discover/results'
     | '/discover/summary'
@@ -125,9 +180,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/assistant'
+    | '/dashboard'
+    | '/growth'
     | '/journal'
     | '/lab'
     | '/learn'
+    | '/plan'
+    | '/privacy'
     | '/discover/analysis'
     | '/discover/results'
     | '/discover/summary'
@@ -137,9 +197,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssistantRoute: typeof AssistantRoute
+  DashboardRoute: typeof DashboardRoute
+  GrowthRoute: typeof GrowthRoute
   JournalRoute: typeof JournalRoute
   LabRoute: typeof LabRoute
   LearnRoute: typeof LearnRoute
+  PlanRoute: typeof PlanRoute
+  PrivacyRoute: typeof PrivacyRoute
   DiscoverAnalysisRoute: typeof DiscoverAnalysisRoute
   DiscoverResultsRoute: typeof DiscoverResultsRoute
   DiscoverSummaryRoute: typeof DiscoverSummaryRoute
@@ -154,6 +219,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/growth': {
+      id: '/growth'
+      path: '/growth'
+      fullPath: '/growth'
+      preLoaderRoute: typeof GrowthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/journal': {
@@ -175,6 +261,20 @@ declare module '@tanstack/react-router' {
       path: '/learn'
       fullPath: '/learn'
       preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plan': {
+      id: '/plan'
+      path: '/plan'
+      fullPath: '/plan'
+      preLoaderRoute: typeof PlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover/': {
@@ -217,9 +317,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssistantRoute: AssistantRoute,
+  DashboardRoute: DashboardRoute,
+  GrowthRoute: GrowthRoute,
   JournalRoute: JournalRoute,
   LabRoute: LabRoute,
   LearnRoute: LearnRoute,
+  PlanRoute: PlanRoute,
+  PrivacyRoute: PrivacyRoute,
   DiscoverAnalysisRoute: DiscoverAnalysisRoute,
   DiscoverResultsRoute: DiscoverResultsRoute,
   DiscoverSummaryRoute: DiscoverSummaryRoute,
