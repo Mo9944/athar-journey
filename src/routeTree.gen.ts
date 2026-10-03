@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JournalRouteImport } from './routes/journal'
+import { Route as LabRouteImport } from './routes/lab'
+import { Route as LearnRouteImport } from './routes/learn'
 import { Route as DiscoverIndexRouteImport } from './routes/discover.index'
 import { Route as DiscoverAnalysisRouteImport } from './routes/discover.analysis'
 import { Route as DiscoverResultsRouteImport } from './routes/discover.results'
@@ -25,6 +27,16 @@ const IndexRoute = IndexRouteImport.update({
 const JournalRoute = JournalRouteImport.update({
   id: '/journal',
   path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabRoute = LabRouteImport.update({
+  id: '/lab',
+  path: '/lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverIndexRoute = DiscoverIndexRouteImport.update({
@@ -56,6 +68,8 @@ const DiscoverToolsRoute = DiscoverToolsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
+  '/lab': typeof LabRoute
+  '/learn': typeof LearnRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
   '/discover/results': typeof DiscoverResultsRoute
   '/discover/summary': typeof DiscoverSummaryRoute
@@ -65,6 +79,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
+  '/lab': typeof LabRoute
+  '/learn': typeof LearnRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
   '/discover/results': typeof DiscoverResultsRoute
   '/discover/summary': typeof DiscoverSummaryRoute
@@ -75,6 +91,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
+  '/lab': typeof LabRoute
+  '/learn': typeof LearnRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
   '/discover/results': typeof DiscoverResultsRoute
   '/discover/summary': typeof DiscoverSummaryRoute
@@ -86,6 +104,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/journal'
+    | '/lab'
+    | '/learn'
     | '/discover/analysis'
     | '/discover/results'
     | '/discover/summary'
@@ -95,6 +115,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/journal'
+    | '/lab'
+    | '/learn'
     | '/discover/analysis'
     | '/discover/results'
     | '/discover/summary'
@@ -104,6 +126,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/journal'
+    | '/lab'
+    | '/learn'
     | '/discover/analysis'
     | '/discover/results'
     | '/discover/summary'
@@ -114,6 +138,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   JournalRoute: typeof JournalRoute
+  LabRoute: typeof LabRoute
+  LearnRoute: typeof LearnRoute
   DiscoverAnalysisRoute: typeof DiscoverAnalysisRoute
   DiscoverResultsRoute: typeof DiscoverResultsRoute
   DiscoverSummaryRoute: typeof DiscoverSummaryRoute
@@ -135,6 +161,20 @@ declare module '@tanstack/react-router' {
       path: '/journal'
       fullPath: '/journal'
       preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lab': {
+      id: '/lab'
+      path: '/lab'
+      fullPath: '/lab'
+      preLoaderRoute: typeof LabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover/': {
@@ -178,6 +218,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   JournalRoute: JournalRoute,
+  LabRoute: LabRoute,
+  LearnRoute: LearnRoute,
   DiscoverAnalysisRoute: DiscoverAnalysisRoute,
   DiscoverResultsRoute: DiscoverResultsRoute,
   DiscoverSummaryRoute: DiscoverSummaryRoute,
