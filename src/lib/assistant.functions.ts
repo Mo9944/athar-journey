@@ -16,7 +16,7 @@ const SYSTEM = `أنت "مساعد أثر"، مرشد تعلّم عربي ودو
 export const askAssistant = createServerFn({ method: "POST" })
   .inputValidator((d) => Input.parse(d))
   .handler(async ({ data }) => {
-    const key = process.env.LOVABLE_API_KEY;
+    const key = process.env['LOVABLE_API_KEY'];
     if (!key) return { error: "المساعد غير متاح حاليًا." };
     const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
