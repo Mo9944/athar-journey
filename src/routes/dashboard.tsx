@@ -17,7 +17,7 @@ function Dashboard() {
   const tasks = s.goals.flatMap((g) => g.tasks);
   const tasksP = tasks.length ? Math.round((tasks.filter((t) => t.done).length / tasks.length) * 100) : 0;
   const plan = s.plans.find((x) => x.status === "active");
-  const next = p < 100 ? { to: "/discover", label: "أكمل اكتشاف ذاتك" } : !plan ? { to: "/plan", label: "اطلب خطة تعلّم" } : { to: "/growth", label: "تابع أهدافك" };
+  const next = p < 100 ? { to: "/discover", label: "أكمل اكتشاف ذاتك" } : !plan ? { to: "/path", label: "ابنِ مسار تعلّمك" } : { to: "/growth", label: "تابع أهدافك" };
   const stats = [
     { icon: NotebookPen, n: s.journal.length, l: "تأملات", to: "/journal" },
     { icon: Lightbulb, n: s.ideas.length, l: "أفكار", to: "/lab" },
