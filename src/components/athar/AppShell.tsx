@@ -1,10 +1,11 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Compass, BookOpen, Lightbulb, Target, MessageCircle, LayoutDashboard, ShieldCheck, NotebookPen, Sprout } from "lucide-react";
+import { Compass, BookOpen, Lightbulb, Target, MessageCircle, LayoutDashboard, ShieldCheck, NotebookPen, Sprout, Route } from "lucide-react";
 import type { ReactNode } from "react";
 
 const NAV = [
   { to: "/dashboard", label: "لوحتي", icon: LayoutDashboard },
   { to: "/discover", label: "اكتشف ذاتك", icon: Compass },
+  { to: "/path", label: "مساري", icon: Route },
   { to: "/journal", label: "دفتر التأمل", icon: NotebookPen },
   { to: "/learn", label: "المكتبة", icon: BookOpen },
   { to: "/lab", label: "مختبر الأفكار", icon: Lightbulb },
@@ -12,7 +13,7 @@ const NAV = [
   { to: "/assistant", label: "المساعد", icon: MessageCircle },
 ] as const;
 
-const MOBILE = ["/dashboard", "/discover", "/learn", "/growth", "/assistant"];
+const MOBILE = ["/dashboard", "/discover", "/path", "/growth", "/assistant"];
 
 export function AppShell({ children }: { children: ReactNode }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
