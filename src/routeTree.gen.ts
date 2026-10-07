@@ -15,7 +15,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as GrowthRouteImport } from './routes/growth'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as LabRouteImport } from './routes/lab'
-import { Route as LearnRouteImport } from './routes/learn'
+import { Route as LibraryRouteImport } from './routes/library'
 import { Route as PathRouteImport } from './routes/path'
 import { Route as PlanRouteImport } from './routes/plan'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -55,9 +55,9 @@ const LabRoute = LabRouteImport.update({
   path: '/lab',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LearnRoute = LearnRouteImport.update({
-  id: '/learn',
-  path: '/learn',
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PathRoute = PathRouteImport.update({
@@ -108,7 +108,7 @@ export interface FileRoutesByFullPath {
   '/growth': typeof GrowthRoute
   '/journal': typeof JournalRoute
   '/lab': typeof LabRoute
-  '/learn': typeof LearnRoute
+  '/library': typeof LibraryRoute
   '/path': typeof PathRoute
   '/plan': typeof PlanRoute
   '/privacy': typeof PrivacyRoute
@@ -125,7 +125,7 @@ export interface FileRoutesByTo {
   '/growth': typeof GrowthRoute
   '/journal': typeof JournalRoute
   '/lab': typeof LabRoute
-  '/learn': typeof LearnRoute
+  '/library': typeof LibraryRoute
   '/path': typeof PathRoute
   '/plan': typeof PlanRoute
   '/privacy': typeof PrivacyRoute
@@ -143,7 +143,7 @@ export interface FileRoutesById {
   '/growth': typeof GrowthRoute
   '/journal': typeof JournalRoute
   '/lab': typeof LabRoute
-  '/learn': typeof LearnRoute
+  '/library': typeof LibraryRoute
   '/path': typeof PathRoute
   '/plan': typeof PlanRoute
   '/privacy': typeof PrivacyRoute
@@ -162,7 +162,7 @@ export interface FileRouteTypes {
     | '/growth'
     | '/journal'
     | '/lab'
-    | '/learn'
+    | '/library'
     | '/path'
     | '/plan'
     | '/privacy'
@@ -179,7 +179,7 @@ export interface FileRouteTypes {
     | '/growth'
     | '/journal'
     | '/lab'
-    | '/learn'
+    | '/library'
     | '/path'
     | '/plan'
     | '/privacy'
@@ -196,7 +196,7 @@ export interface FileRouteTypes {
     | '/growth'
     | '/journal'
     | '/lab'
-    | '/learn'
+    | '/library'
     | '/path'
     | '/plan'
     | '/privacy'
@@ -214,7 +214,7 @@ export interface RootRouteChildren {
   GrowthRoute: typeof GrowthRoute
   JournalRoute: typeof JournalRoute
   LabRoute: typeof LabRoute
-  LearnRoute: typeof LearnRoute
+  LibraryRoute: typeof LibraryRoute
   PathRoute: typeof PathRoute
   PlanRoute: typeof PlanRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -269,11 +269,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LabRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/learn': {
-      id: '/learn'
-      path: '/learn'
-      fullPath: '/learn'
-      preLoaderRoute: typeof LearnRouteImport
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/path': {
@@ -342,7 +342,7 @@ const rootRouteChildren: RootRouteChildren = {
   GrowthRoute: GrowthRoute,
   JournalRoute: JournalRoute,
   LabRoute: LabRoute,
-  LearnRoute: LearnRoute,
+  LibraryRoute: LibraryRoute,
   PathRoute: PathRoute,
   PlanRoute: PlanRoute,
   PrivacyRoute: PrivacyRoute,
