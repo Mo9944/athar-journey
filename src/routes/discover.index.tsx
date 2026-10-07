@@ -88,7 +88,7 @@ function Discover() {
 
       <div className="mt-8 flex flex-wrap gap-3">
         <Link to="/discover/summary" className="inline-flex items-center gap-2 rounded-2xl bg-primary px-5 py-3 font-semibold text-primary-foreground"><UserRound className="size-5" />ملخّص اكتشاف الذات</Link>
-        <Link to="/learn" className="inline-flex items-center gap-2 rounded-2xl border bg-card px-5 py-3 font-semibold">تخطَّ إلى رحلة التعلم</Link>
+        <Link to="/library" className="inline-flex items-center gap-2 rounded-2xl border bg-card px-5 py-3 font-semibold">تخطَّ إلى رحلة التعلم</Link>
       </div>
     </div>
   );

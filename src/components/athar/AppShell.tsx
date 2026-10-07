@@ -7,7 +7,7 @@ const NAV = [
   { to: "/discover", label: "اكتشف ذاتك", icon: Compass },
   { to: "/path", label: "مساري", icon: Route },
   { to: "/journal", label: "دفتر التأمل", icon: NotebookPen },
-  { to: "/learn", label: "المكتبة", icon: BookOpen },
+  { to: "/library", label: "المكتبة", icon: BookOpen },
   { to: "/lab", label: "مختبر الأفكار", icon: Lightbulb },
   { to: "/growth", label: "تطوير الذات", icon: Target },
   { to: "/assistant", label: "المساعد", icon: MessageCircle },
