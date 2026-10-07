@@ -7,7 +7,7 @@ import { leadingCodes, setState, useAthar } from "@/lib/store";
 import { CATEGORIES, RESOURCES, type Resource } from "@/lib/library";
 import { RIASEC } from "@/lib/riasec";
 
-export const Route = createFileRoute("/learn")({
+export const Route = createFileRoute("/library")({
   head: () => seo("تعلّم وطوّر أفكارك", "مكتبة معرفية مختارة في العلوم والتاريخ والفلسفة والأدب والقيم والثقافة الرقمية."),
   component: Learn,
 });
