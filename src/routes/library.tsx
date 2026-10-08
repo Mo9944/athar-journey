@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { BookOpen, Clock, ExternalLink, Check, Sparkle, Search } from "lucide-react";
+import { BookOpen, Clock, ExternalLink, Check, Sparkle, Search, Bookmark } from "lucide-react";
 import { Chip, Empty, PageHeader, Tag } from "@/components/athar/AppShell";
 import { seo } from "@/lib/seo";
 import { leadingCodes, setState, useAthar } from "@/lib/store";
@@ -13,6 +13,7 @@ export const Route = createFileRoute("/library")({
 });
 
 function Card({ r, done, why }: { r: Resource; done: boolean; why?: string }) {
+  const saved = useAthar().saved.includes(r.id);
   return (
     <article className="card-soft card-lift flex flex-col p-5">
       <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -33,6 +34,8 @@ function Card({ r, done, why }: { r: Resource; done: boolean; why?: string }) {
           className={`inline-flex items-center gap-1 rounded-xl px-3 py-2 text-sm font-medium ${done ? "bg-primary text-primary-foreground" : "border"}`}>
           <Check className="size-4" />{done ? "أنجزته" : "علّم كمُنجز"}
         </button>
+        <button aria-label={saved ? "إزالة من المحفوظات" : "حفظ"} onClick={() => setState((s) => ({ saved: saved ? s.saved.filter((x) => x !== r.id) : [...s.saved, r.id] }))}
+          className={`mr-auto grid size-9 place-items-center rounded-xl border ${saved ? "text-gold" : "text-muted-foreground"}`}><Bookmark className="size-4" fill={saved ? "currentColor" : "none"} /></button>
       </div>
     </article>
   );

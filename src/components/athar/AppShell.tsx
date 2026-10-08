@@ -1,11 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Compass, BookOpen, Lightbulb, Target, MessageCircle, LayoutDashboard, ShieldCheck, NotebookPen, Sprout, Route } from "lucide-react";
+import { Compass, BookOpen, Lightbulb, Target, MessageCircle, LayoutDashboard, ShieldCheck, NotebookPen, Sprout, Route, Bookmark, GraduationCap } from "lucide-react";
 import type { ReactNode } from "react";
 
 const NAV = [
-  { to: "/dashboard", label: "لوحتي", icon: LayoutDashboard },
-  { to: "/discover", label: "اكتشف ذاتك", icon: Compass },
-  { to: "/path", label: "مساري", icon: Route },
+  { to: "/dashboard", label: "الرئيسية", icon: LayoutDashboard },
+  { to: "/path", label: "رحلتي", icon: Route },
+  { to: "/learn", label: "تعلّم", icon: GraduationCap },
+  { to: "/discover", label: "اكتشف", icon: Compass },
+  { to: "/saved", label: "محفوظاتي", icon: Bookmark },
   { to: "/journal", label: "دفتر التأمل", icon: NotebookPen },
   { to: "/library", label: "المكتبة", icon: BookOpen },
   { to: "/lab", label: "مختبر الأفكار", icon: Lightbulb },
@@ -13,7 +15,7 @@ const NAV = [
   { to: "/assistant", label: "المساعد", icon: MessageCircle },
 ] as const;
 
-const MOBILE = ["/dashboard", "/discover", "/path", "/growth", "/assistant"];
+const MOBILE = ["/dashboard", "/path", "/discover", "/saved", "/assistant"];
 
 export function AppShell({ children }: { children: ReactNode }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
@@ -47,6 +49,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span className="font-display text-xl font-bold text-primary">أثر</span>
           </Link>
           <div className="flex gap-1">
+            <Link to="/learn" aria-label="تعلّم" className="grid size-10 place-items-center rounded-lg text-muted-foreground hover:bg-muted"><GraduationCap className="size-5" /></Link>
             <Link to="/journal" aria-label="دفتر التأمل" className="grid size-10 place-items-center rounded-lg text-muted-foreground hover:bg-muted"><NotebookPen className="size-5" /></Link>
             <Link to="/lab" aria-label="مختبر الأفكار" className="grid size-10 place-items-center rounded-lg text-muted-foreground hover:bg-muted"><Lightbulb className="size-5" /></Link>
             <Link to="/privacy" aria-label="الخصوصية" className="grid size-10 place-items-center rounded-lg text-muted-foreground hover:bg-muted"><ShieldCheck className="size-5" /></Link>
