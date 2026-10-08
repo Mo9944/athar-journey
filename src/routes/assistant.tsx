@@ -1,12 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Send, Trash2 } from "lucide-react";
 import { PageHeader } from "@/components/athar/AppShell";
 import { seo } from "@/lib/seo";
 import { leadingCodes, setState, useAthar, type AtharState } from "@/lib/store";
 import { RIASEC } from "@/lib/riasec";
 import { askAssistant } from "@/lib/assistant.functions";
+import { allTopics, trackFor } from "@/lib/tracks";
+
+function pathInfo() {
+  try {
+    const raw = localStorage.getItem("athar-path-v1"); if (!raw) return null;
+    const j = JSON.parse(raw) as { goal: string; trackId: string; level: string; time: string; budget: string; start: number; done: string[]; paused: boolean };
+    const t = trackFor(j.goal, j.trackId);
+    const topics = allTopics(t).filter((x) => x.si >= j.start);
+    const next = topics.find((x) => !j.done.includes(x.key));
+    const stage = t.stages[next ? next.si : t.stages.length - 1];
+    const pct = topics.length ? Math.round((topics.filter((x) => j.done.includes(x.key)).length / topics.length) * 100) : 0;
+    return { goal: j.goal, stage: stage?.title ?? "", next: next?.name ?? "",
+      text: `مساري الحالي: الهدف "${j.goal}"، المستوى ${j.level}، الوقت ${j.time}، الميزانية ${j.budget}. المرحلة الحالية: ${stage?.title ?? "-"}${next ? `، الموضوع التالي: ${next.name}` : "، أنهى كل المواضيع"}. التقدّم ${pct}%${j.paused ? " (المسار متوقف مؤقتًا)" : ""}.` };
+  } catch { return null; }
+}
 
 export const Route = createFileRoute("/assistant")({
   head: () => seo("مساعد التعلّم", "تحدّث مع مساعد أثر الذكي ليقترح عليك ما تتعلّمه ويساعدك على التأمل والتخطيط."),
@@ -18,7 +34,7 @@ const SUGGEST = ["ماذا أتعلّم هذا الأسبوع؟", "ساعدني 
 function profileText(s: AtharState) {
   const codes = leadingCodes(s).slice(0, 3).map((c) => RIASEC[c].ar).join("، ");
   return [codes && `اهتمامات: ${codes}`, s.values.length && `قيم: ${s.values.join("، ")}`, s.strengths.length && `نقاط قوة: ${s.strengths.join("، ")}`,
-    s.exploreTopics.length && `مواضيع: ${s.exploreTopics.join("، ")}`, s.goals.length && `أهداف: ${s.goals.map((g) => g.title).join("، ")}`].filter(Boolean).join("\n");
+    s.exploreTopics.length && `مواضيع: ${s.exploreTopics.join("، ")}`, s.goals.length && `أهداف: ${s.goals.map((g) => g.title).join("، ")}`, pathInfo()?.text].filter(Boolean).join("\n");
 }
 
 function Assistant() {
@@ -27,6 +43,9 @@ function Assistant() {
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [p, setP] = useState<ReturnType<typeof pathInfo>>(null);
+  useEffect(() => setP(pathInfo()), []);
+  const suggest = p ? [`اشرح لي "${p.next || p.stage}" ببساطة`, `أعطني تمرينًا صغيرًا على ${p.stage}`, "ما خطوتي التالية في مساري؟", "اختبرني بسؤالين على ما تعلمته"] : SUGGEST;
 
   async function send(q: string) {
     if (!q.trim() || busy) return;
@@ -43,8 +62,10 @@ function Assistant() {
   return (
     <div className="flex flex-col">
       <PageHeader eyebrow="ذكاء اصطناعي" title="مساعد التعلّم" desc="يستخدم ما أدخلته في ملفك ليقترح ويسأل ويساعدك على التخطيط. اقتراحاته إرشادية وليست أحكامًا." />
+      {p ? <Link to="/path" className="mb-4 block rounded-2xl bg-sky/60 p-3 text-sm">المساعد يعرف مسارك: <b className="text-primary">{p.goal}</b> — المرحلة: {p.stage}</Link>
+        : <Link to="/path" className="mb-4 block rounded-2xl bg-sky/60 p-3 text-sm">ابدأ <b className="text-primary">مساري</b> ليقدّم لك المساعد إرشادًا مرتبطًا بهدفك.</Link>}
       <div className="card-soft mb-4 min-h-[300px] space-y-3 p-4">
-        {s.chat.length === 0 && <div className="flex flex-wrap gap-2">{SUGGEST.map((q) => (
+        {s.chat.length === 0 && <div className="flex flex-wrap gap-2">{suggest.map((q) => (
           <button key={q} onClick={() => send(q)} className="rounded-full border bg-card px-4 py-2 text-sm hover:border-turquoise">{q}</button>))}</div>}
         {s.chat.map((m, i) => (
           <div key={i} className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-7 ${m.role === "user" ? "mr-auto bg-primary text-primary-foreground" : "ml-auto bg-muted"}`}>{m.content}</div>
