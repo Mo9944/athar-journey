@@ -63,7 +63,8 @@ function Summary() {
         <p className="text-sm opacity-90">الجزء الثاني</p>
         <h2 className="text-xl font-bold">جاهز لتحويل ما اكتشفته إلى تعلّم؟</h2>
         <p className="mt-1 text-sm opacity-95">سنستخدم اهتماماتك ومواضيعك المختارة لاقتراح محتوى وأنشطة تناسبك.</p>
-        <Link to="/library" className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-card px-5 py-3 font-semibold text-primary">انتقل إلى رحلة التعلم والتطوير <ArrowLeft className="size-5" /></Link>
+        <p className="mt-4 text-sm">أنهيت الجزء الأول: عرفت اهتماماتك وقيمك. الآن حان وقت تحويل ذلك إلى معرفة وفعل.</p>
+        <Link to="/learn" className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-card px-5 py-3 font-semibold text-primary">ابدأ التعلم <ArrowLeft className="size-5" /></Link>
       </div>
     </div>
   );

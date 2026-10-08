@@ -30,13 +30,14 @@ export interface AtharState {
   habits: Habit[];
   plans: Plan[];
   chat: ChatMsg[];
+  saved: string[];
 }
 
 const KEY = "athar-v1";
 export const initialState: AtharState = {
   started: false, onetMode: null, scores: {}, ranking: [], values: [], strengths: [], growthAreas: [],
   learning: [], curiosity: "", motivation: "", exploreTopics: [], journal: [], ideas: [], exercisesDone: [],
-  readDone: [], goals: [], habits: [], plans: [], chat: [],
+  readDone: [], goals: [], habits: [], plans: [], chat: [], saved: [],
 };
 
 let state: AtharState = initialState;
