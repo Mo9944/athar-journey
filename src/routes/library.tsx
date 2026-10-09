@@ -43,7 +43,7 @@ function Card({ r, done, why }: { r: Resource; done: boolean; why?: string }) {
   );
 }
 
-type Hit = { name: string; provider: string; meta: string; why: string; url?: string };
+type Hit = { name: string; provider: string; meta: string; why: string; url?: string | undefined };
 function Group({ title, items }: { title: string; items: Hit[] }) {
   const [more, setMore] = useState(false);
   if (!items.length) return null;
@@ -84,7 +84,7 @@ function Learn() {
     const now: Hit[] = [], goal: Hit[] = [], other: Hit[] = [];
     const seen = new Set<string>();
     if (p) p.track.resources.forEach((list, si) => list.forEach((r) => {
-      const stage = p.track.stages[si];
+      const stage = p.track.stages[si]; if (!stage) return;
       if (seen.has(r.url) || !(m(r.name + r.provider + r.learn) || m(stage.title + stage.topics.join(" ")))) return;
       seen.add(r.url);
       if (si === p.si) now.push(fromRes(r, `يساعدك في مرحلتك الحالية: ${stage.title}`));
