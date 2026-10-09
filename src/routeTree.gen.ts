@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as GrowthRouteImport } from './routes/growth'
@@ -19,6 +20,7 @@ import { Route as LearnRouteImport } from './routes/learn'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as PathRouteImport } from './routes/path'
 import { Route as PlanRouteImport } from './routes/plan'
+import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SavedRouteImport } from './routes/saved'
 import { Route as DiscoverIndexRouteImport } from './routes/discover.index'
@@ -30,6 +32,11 @@ import { Route as DiscoverToolsRouteImport } from './routes/discover.tools'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AssistantRoute = AssistantRouteImport.update({
@@ -77,6 +84,11 @@ const PlanRoute = PlanRouteImport.update({
   path: '/plan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PracticeRoute = PracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -115,6 +127,7 @@ const DiscoverToolsRoute = DiscoverToolsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
   '/assistant': typeof AssistantRoute
   '/dashboard': typeof DashboardRoute
   '/growth': typeof GrowthRoute
@@ -124,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/library': typeof LibraryRoute
   '/path': typeof PathRoute
   '/plan': typeof PlanRoute
+  '/practice': typeof PracticeRoute
   '/privacy': typeof PrivacyRoute
   '/saved': typeof SavedRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
@@ -134,6 +148,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
   '/assistant': typeof AssistantRoute
   '/dashboard': typeof DashboardRoute
   '/growth': typeof GrowthRoute
@@ -143,6 +158,7 @@ export interface FileRoutesByTo {
   '/library': typeof LibraryRoute
   '/path': typeof PathRoute
   '/plan': typeof PlanRoute
+  '/practice': typeof PracticeRoute
   '/privacy': typeof PrivacyRoute
   '/saved': typeof SavedRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
@@ -154,6 +170,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
   '/assistant': typeof AssistantRoute
   '/dashboard': typeof DashboardRoute
   '/growth': typeof GrowthRoute
@@ -163,6 +180,7 @@ export interface FileRoutesById {
   '/library': typeof LibraryRoute
   '/path': typeof PathRoute
   '/plan': typeof PlanRoute
+  '/practice': typeof PracticeRoute
   '/privacy': typeof PrivacyRoute
   '/saved': typeof SavedRoute
   '/discover/analysis': typeof DiscoverAnalysisRoute
@@ -175,6 +193,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/achievements'
     | '/assistant'
     | '/dashboard'
     | '/growth'
@@ -184,6 +203,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/path'
     | '/plan'
+    | '/practice'
     | '/privacy'
     | '/saved'
     | '/discover/analysis'
@@ -194,6 +214,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/achievements'
     | '/assistant'
     | '/dashboard'
     | '/growth'
@@ -203,6 +224,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/path'
     | '/plan'
+    | '/practice'
     | '/privacy'
     | '/saved'
     | '/discover/analysis'
@@ -213,6 +235,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/achievements'
     | '/assistant'
     | '/dashboard'
     | '/growth'
@@ -222,6 +245,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/path'
     | '/plan'
+    | '/practice'
     | '/privacy'
     | '/saved'
     | '/discover/analysis'
@@ -233,6 +257,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AchievementsRoute: typeof AchievementsRoute
   AssistantRoute: typeof AssistantRoute
   DashboardRoute: typeof DashboardRoute
   GrowthRoute: typeof GrowthRoute
@@ -242,6 +267,7 @@ export interface RootRouteChildren {
   LibraryRoute: typeof LibraryRoute
   PathRoute: typeof PathRoute
   PlanRoute: typeof PlanRoute
+  PracticeRoute: typeof PracticeRoute
   PrivacyRoute: typeof PrivacyRoute
   SavedRoute: typeof SavedRoute
   DiscoverAnalysisRoute: typeof DiscoverAnalysisRoute
@@ -258,6 +284,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/assistant': {
@@ -323,6 +356,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlanRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/practice': {
+      id: '/practice'
+      path: '/practice'
+      fullPath: '/practice'
+      preLoaderRoute: typeof PracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -377,6 +417,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AchievementsRoute: AchievementsRoute,
   AssistantRoute: AssistantRoute,
   DashboardRoute: DashboardRoute,
   GrowthRoute: GrowthRoute,
@@ -386,6 +427,7 @@ const rootRouteChildren: RootRouteChildren = {
   LibraryRoute: LibraryRoute,
   PathRoute: PathRoute,
   PlanRoute: PlanRoute,
+  PracticeRoute: PracticeRoute,
   PrivacyRoute: PrivacyRoute,
   SavedRoute: SavedRoute,
   DiscoverAnalysisRoute: DiscoverAnalysisRoute,
