@@ -62,6 +62,8 @@ export function setState(fn: (s: AtharState) => Partial<AtharState>) {
 
 export function clearAll() {
   localStorage.removeItem(KEY);
+  localStorage.removeItem("athar-path-v1");
+  localStorage.removeItem("athar-practice-v1");
   state = initialState;
   listeners.forEach((l) => l());
 }

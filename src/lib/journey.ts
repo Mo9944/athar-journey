@@ -9,7 +9,7 @@ export function pathInfo() {
     const next = topics.find((x) => !j.done.includes(x.key));
     const stage = t.stages[next ? next.si : t.stages.length - 1];
     const pct = topics.length ? Math.round((topics.filter((x) => j.done.includes(x.key)).length / topics.length) * 100) : 0;
-    return { pct, goal: j.goal, track: t, si: next ? next.si : t.stages.length - 1, stage: stage?.title ?? "", next: next?.name ?? "",
+    return { pct, goal: j.goal, track: t, level: j.level, done: j.done, si: next ? next.si : t.stages.length - 1, stage: stage?.title ?? "", next: next?.name ?? "",
       text: `مساري الحالي: الهدف "${j.goal}"، المستوى ${j.level}، الوقت ${j.time}، الميزانية ${j.budget}. المرحلة الحالية: ${stage?.title ?? "-"}${next ? `، الموضوع التالي: ${next.name}` : "، أنهى كل المواضيع"}. التقدّم ${pct}%${j.paused ? " (المسار متوقف مؤقتًا)" : ""}.` };
   } catch { return null; }
 }
